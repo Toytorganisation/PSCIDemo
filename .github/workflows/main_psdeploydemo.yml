@@ -28,12 +28,18 @@ jobs:
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ./myapp
+        
+      - name: Vérifier le contenu du dossier myapp
+        run: dir ./myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
           path: ./myapp
+
+      - name: Confirmation upload
+        run: echo "Upload terminé pour .net-app"
 
   deploy:
     runs-on: windows-latest
@@ -65,4 +71,5 @@ jobs:
           package: .
 
           
+
 
